@@ -1,4 +1,4 @@
-package Model;
+package com.example.demo.Model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;

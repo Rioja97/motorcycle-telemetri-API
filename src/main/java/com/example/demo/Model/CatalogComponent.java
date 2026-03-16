@@ -1,4 +1,4 @@
-package Model;
+package com.example.demo.Model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -22,6 +22,6 @@ public class CatalogComponent {
     @NotNull(message = "{catalog.lifespanKm.mandatory}")
     private Integer lifespanKm;
 
-    @OneToMany(mappedBy = "CatalogComponent")
+    @OneToMany(mappedBy = "catalogComponent")
     private List<InstalledComponent> installedComponents;
 }
