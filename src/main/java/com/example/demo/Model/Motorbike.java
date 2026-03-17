@@ -28,7 +28,7 @@ public class Motorbike {
     private Integer mileage;
 
     @OneToMany(mappedBy = "motorbike")
-    private List<InstalledComponent> installedComponent;
+    private List<InstalledComponent> installedComponents;
 
     @OneToMany(mappedBy = "motorbike")
     private List<MaintenanceHistory> history;
