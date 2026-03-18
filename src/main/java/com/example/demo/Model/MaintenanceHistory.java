@@ -25,10 +25,6 @@ public class MaintenanceHistory {
     private String description;
 
     @ManyToOne
-    @JoinColumn(name = "motorbike_id")
-    private Motorbike motorbike;
-
-    @ManyToOne
     @JoinColumn(name = "installed_component_id")
     private InstalledComponent installedComponent;
 }

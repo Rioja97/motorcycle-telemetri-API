@@ -21,7 +21,6 @@ public class InstalledComponentController {
     @PostMapping
     public ResponseEntity<InstalledComponentResponseDTO> addInstalledComponent(@RequestBody InstallationRequestDTO installationRequestDTO) {
         InstalledComponentResponseDTO saveComponent = installedComponentService.installNewComponent(installationRequestDTO);
-
         return ResponseEntity.status(HttpStatus.CREATED).body(saveComponent);
     }
 }

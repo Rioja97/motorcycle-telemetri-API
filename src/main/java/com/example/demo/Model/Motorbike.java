@@ -29,7 +29,4 @@ public class Motorbike {
 
     @OneToMany(mappedBy = "motorbike")
     private List<InstalledComponent> installedComponents;
-
-    @OneToMany(mappedBy = "motorbike")
-    private List<MaintenanceHistory> history;
 }

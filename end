@@ -1,0 +1,35 @@
+[33mcommit c6a42549428da6856ae8bc073f420e6d704d4242[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m
+Author: Emmanuel <emmafossati97@yahoo.com>
+Date:   Tue Mar 17 20:43:42 2026 -0300
+
+    InstalledComponents Service, Controller, DTORequest and DTOResponse
+
+[33mcommit 218407d12e3b8bbf8557104b77e52f85f01061a6[m
+Author: Emmanuel <emmafossati97@yahoo.com>
+Date:   Mon Mar 16 21:32:55 2026 -0300
+
+    CatalogComponent service and controller
+
+[33mcommit e46aa331525f0e65d77325d18e6c107d89faac76[m
+Author: Emmanuel <emmafossati97@yahoo.com>
+Date:   Mon Mar 16 21:13:51 2026 -0300
+
+    Motorbike service and controller
+
+[33mcommit f1bde314e5d80326f606c7d5c897ef468e493faa[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Emmanuel <emmafossati97@yahoo.com>
+Date:   Mon Mar 16 16:35:37 2026 -0300
+
+    Database connection
+
+[33mcommit 749b5c8658e0dc9f5fc8c9a4d6f1305088b55f40[m
+Author: Rioja97 <140468397+Rioja97@users.noreply.github.com>
+Date:   Fri Mar 13 11:21:13 2026 -0300
+
+    feat: initial setup and entity modeling
+
+[33mcommit 111216f03d4201700c74b1af76f3387909e5a737[m
+Author: Rioja97 <140468397+Rioja97@users.noreply.github.com>
+Date:   Fri Mar 13 11:17:21 2026 -0300
+
+    First commit
