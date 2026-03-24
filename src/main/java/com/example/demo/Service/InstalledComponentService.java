@@ -1,5 +1,6 @@
 package com.example.demo.Service;
 
+import com.example.demo.DTO.ComponentHealthResponseDTO;
 import com.example.demo.DTO.InstallationRequestDTO;
 import com.example.demo.DTO.InstalledComponentResponseDTO;
 import com.example.demo.Model.CatalogComponent;
@@ -38,6 +39,36 @@ public class InstalledComponentService {
                 .componentName(savedComponent.getCatalogComponent().getName())
                 .installationMileage(savedComponent.getMileage())
                 .installationDate(savedComponent.getInstallationDate())
+                .build();
+    }
+
+    public ComponentHealthResponseDTO checkComponentHealth(Long installedComponentId, Integer currentKm) {
+        InstalledComponent installedComponent = installedComponentRepository.findById(installedComponentId)
+                .orElseThrow(() -> new RuntimeException("Component not found"));
+
+        Integer lifespanKm = installedComponent.getCatalogComponent().getLifespanKm();
+        Integer installedAtKm = installedComponent.getMileage();
+
+        Integer expirationKm = installedAtKm + lifespanKm;
+        Integer remainingKm = expirationKm - currentKm;
+
+        String status;
+        if (remainingKm < 0) {
+            status = "REPLACE";
+        } else if (remainingKm <= 500) {
+            status = "WARNING";
+        }else {
+            status = "OK";
+        }
+
+        return ComponentHealthResponseDTO.builder()
+                .componentName(installedComponent.getCatalogComponent().getName())
+                .installedAtKm(installedAtKm)
+                .lifespanKm(lifespanKm)
+                .expirationKm(expirationKm)
+                .currentKm(currentKm)
+                .remainingKm(remainingKm)
+                .status(status)
                 .build();
     }
 }
