@@ -1,5 +1,6 @@
 package com.example.demo.Controller;
 
+import com.example.demo.DTO.MotorbikeHealthReportDTO;
 import com.example.demo.Model.Motorbike;
 import com.example.demo.Service.MotorbikeService;
 import lombok.RequiredArgsConstructor;
@@ -25,5 +26,13 @@ public class MotorbikeController {
     @GetMapping
     public ResponseEntity<List<Motorbike>> findAll(){
         return ResponseEntity.ok(motorbikeService.getAllMotorbikes());
+    }
+
+    @GetMapping("/{id}/health-report")
+    public ResponseEntity<MotorbikeHealthReportDTO> getHealthReport(
+            @PathVariable Long id,
+            @RequestParam Integer currentKm){
+        MotorbikeHealthReportDTO report = motorbikeService.getMotorbikeHealthReport(id, currentKm);
+        return ResponseEntity.ok(report);
     }
 }

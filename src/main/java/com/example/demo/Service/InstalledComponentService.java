@@ -42,13 +42,9 @@ public class InstalledComponentService {
                 .build();
     }
 
-    public ComponentHealthResponseDTO checkComponentHealth(Long installedComponentId, Integer currentKm) {
-        InstalledComponent installedComponent = installedComponentRepository.findById(installedComponentId)
-                .orElseThrow(() -> new RuntimeException("Component not found"));
-
-        Integer lifespanKm = installedComponent.getCatalogComponent().getLifespanKm();
-        Integer installedAtKm = installedComponent.getMileage();
-
+    public ComponentHealthResponseDTO calculateHealth(InstalledComponent component, Integer currentKm) {
+        Integer lifespanKm = component.getCatalogComponent().getLifespanKm();
+        Integer installedAtKm = component.getMileage();
         Integer expirationKm = installedAtKm + lifespanKm;
         Integer remainingKm = expirationKm - currentKm;
 
@@ -57,12 +53,12 @@ public class InstalledComponentService {
             status = "REPLACE";
         } else if (remainingKm <= 500) {
             status = "WARNING";
-        }else {
+        } else {
             status = "OK";
         }
 
         return ComponentHealthResponseDTO.builder()
-                .componentName(installedComponent.getCatalogComponent().getName())
+                .componentName(component.getCatalogComponent().getName())
                 .installedAtKm(installedAtKm)
                 .lifespanKm(lifespanKm)
                 .expirationKm(expirationKm)
@@ -70,5 +66,12 @@ public class InstalledComponentService {
                 .remainingKm(remainingKm)
                 .status(status)
                 .build();
+    }
+
+    public ComponentHealthResponseDTO checkComponentHealth(Long installedComponentId, Integer currentKm) {
+        InstalledComponent component = installedComponentRepository.findById(installedComponentId)
+                .orElseThrow(() -> new RuntimeException("Component not found"));
+
+        return calculateHealth(component, currentKm);
     }
 }
