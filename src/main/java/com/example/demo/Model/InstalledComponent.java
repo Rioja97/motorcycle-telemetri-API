@@ -32,4 +32,7 @@ public class InstalledComponent {
 
     @OneToMany(mappedBy = "installedComponent")
     private List<MaintenanceHistory> maintenanceHistory;
+
+    @Column(columnDefinition = "boolean default true")
+    private Boolean active = true;
 }

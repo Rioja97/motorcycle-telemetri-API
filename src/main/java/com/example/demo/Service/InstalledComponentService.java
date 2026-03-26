@@ -25,6 +25,12 @@ public class InstalledComponentService {
         Motorbike motorbike = motorbikeRepository.findById(installationRequestDTO.getMotorbikeId()).orElseThrow(() -> new RuntimeException("Motorbike not found"));
         CatalogComponent catalogComponent = catalogComponentRepository.findById(installationRequestDTO.getCatalogComponentId()).orElseThrow(() -> new RuntimeException("Catalog component not found"));
 
+        installedComponentRepository.findByMotorbikeIdAndCatalogComponentIdAndActiveTrue(motorbike.getId(), catalogComponent.getId())
+                .ifPresent(oldComponent -> {
+                    oldComponent.setActive(false);
+                    installedComponentRepository.save(oldComponent);
+                });
+
         InstalledComponent installComponent = new InstalledComponent();
         installComponent.setMotorbike(motorbike);
         installComponent.setCatalogComponent(catalogComponent);

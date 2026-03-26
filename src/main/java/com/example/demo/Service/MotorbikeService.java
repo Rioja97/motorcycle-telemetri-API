@@ -2,6 +2,7 @@ package com.example.demo.Service;
 
 import com.example.demo.DTO.ComponentHealthResponseDTO;
 import com.example.demo.DTO.MotorbikeHealthReportDTO;
+import com.example.demo.Model.InstalledComponent;
 import com.example.demo.Model.Motorbike;
 import com.example.demo.Repository.MotorbikeRepository;
 import lombok.RequiredArgsConstructor;
@@ -29,6 +30,7 @@ public class MotorbikeService {
 
         List<ComponentHealthResponseDTO> componentsHealth = motorbike.getInstalledComponents()
                 .stream()
+                .filter(c -> c.getActive() != null && c.getActive())
                 .map(component -> installedComponentService.calculateHealth(component, currentKm))
                 .toList();
 
