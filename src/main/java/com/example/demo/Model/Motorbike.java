@@ -27,6 +27,9 @@ public class Motorbike {
     @NotNull(message = "{moto.mileage.mandatory}")
     private Integer mileage;
 
+    @NotNull(message = "{moto.mileage.mandatory}")
+    private Integer currentKm;
+
     @OneToMany(mappedBy = "motorbike")
     private List<InstalledComponent> installedComponents;
 }

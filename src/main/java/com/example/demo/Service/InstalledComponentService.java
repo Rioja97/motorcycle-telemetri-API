@@ -63,6 +63,9 @@ public class InstalledComponentService {
             status = "OK";
         }
 
+        Motorbike motorbike = motorbikeRepository.findById(component.getMotorbike().getId()).orElseThrow(() -> new RuntimeException("Motorbike not found"));
+        motorbike.setCurrentKm(currentKm);
+
         return ComponentHealthResponseDTO.builder()
                 .componentName(component.getCatalogComponent().getName())
                 .installedAtKm(installedAtKm)
